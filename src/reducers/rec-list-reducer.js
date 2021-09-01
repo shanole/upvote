@@ -4,6 +4,10 @@ export default (state = {}, action) => {
         case 'ADD_REC':
             return ({...state, [id]: {recommender, title, description, id}
             });
+        case 'DELETE_REC':
+          let newState = {...state};
+          delete newState[id];
+          return newState;
         default:
             return (state);
     }

@@ -2,6 +2,20 @@ import recListReducer from '../../reducers/rec-list-reducer';
 
 describe('recListReducer', () => {
 
+  const currentState = {
+    1: {
+      recommender: 'Garrett',
+      title: 'Batman',
+      description: "I really love bats. I was sorely disappointed that they didn't feature more.",
+      id: 1
+    },
+    2: {
+      recommender: 'Shannon',
+      title: 'Mamma Mia',
+      description: "This is a perfect movie.",
+      id: 2
+    }
+  }
   const recData = {
     recommender: 'Garrett',
     title: 'Batman',
@@ -31,6 +45,22 @@ describe('recListReducer', () => {
         title: title,
         description: description,
         id: id
+      }
+    });
+  });
+
+  test('Should successfully delete a recommendation', () => {
+    action = {
+      type: 'DELETE_REC',
+      id: 1
+    }
+
+    expect(recListReducer(currentState, action)).toEqual({
+      2: {
+        recommender: 'Shannon',
+        title: 'Mamma Mia',
+        description: "This is a perfect movie.",
+        id: 2
       }
     });
   });
