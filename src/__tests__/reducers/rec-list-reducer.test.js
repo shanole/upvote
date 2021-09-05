@@ -1,4 +1,5 @@
 import postsReducer from '../../reducers/posts-reducer'
+import Moment from 'moment';
 
 describe('postsReducer', () => {
 
@@ -14,9 +15,10 @@ describe('postsReducer', () => {
       id: 2
     }
   }
-  const recData = {
+  const postData = {
     name: 'Garrett',
     post: "If covid doesn't take you out, can I?",
+    timeOpen: 0,
     id: 1
   };
 
@@ -26,20 +28,24 @@ describe('postsReducer', () => {
     expect(postsReducer({}, { type: null })).toEqual({});
   });
 
-  test('Should successfully add a new post to postList', () => {
-    const { name, post, id } = recData;
+  test('Should successfully add a new post to postList that includes Moment-formatted wait times', () => {
+    const { name, post, timeOpen, formattedWaitTime, id } = postData;
     action = {
       type: 'ADD_POST',
-      name: name,
-      post: post,
-      id: id
+      name,
+      post,
+      timeOpen,
+      id,
+      formattedWaitTime: new Moment().fromNow(true)
     };
 
     expect(postsReducer({}, action)).toEqual({
       [id]: {
-        name: name,
-        post: post,
-        id: id
+        name,
+        post,
+        id,
+        timeOpen,
+        formattedWaitTime: 'a few seconds'
       }
     });
   });
@@ -59,4 +65,21 @@ describe('postsReducer', () => {
     });
   });
 
+  test('Should add a formatted wait time to ticket entry', () => {
+    const { name, post, timeOpen, id } = postData;
+    action = {
+      type : 'UPDATE_TIME',
+      formattedWaitTime: '4 minutes',
+      id: id
+    };
+    expect(postsReducer({ [id] : postData }, action)).toEqual({
+      [id] : {
+        name,
+        post,
+        timeOpen,
+        id,
+        formattedWaitTime : '4 minutes'
+      }
+    });
+  });
 });
