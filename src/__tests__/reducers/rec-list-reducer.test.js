@@ -1,69 +1,62 @@
-import recListReducer from '../../reducers/rec-list-reducer';
+import postsReducer from '../../reducers/posts-reducer'
 
-describe('recListReducer', () => {
+describe('postsReducer', () => {
 
   const currentState = {
     1: {
-      recommender: 'Garrett',
-      title: 'Batman',
-      description: "I really love bats. I was sorely disappointed that they didn't feature more.",
+      name: 'Garrett',
+      post: "If covid doesn't take you out, can I?",
       id: 1
     },
     2: {
-      recommender: 'Shannon',
-      title: 'Mamma Mia',
-      description: "This is a perfect movie.",
+      name: 'Shannon',
+      post: "U up?",
       id: 2
     }
   }
   const recData = {
-    recommender: 'Garrett',
-    title: 'Batman',
-    description: "I really love bats. I was sorely disappointed that they didn't feature more.",
+    name: 'Garrett',
+    post: "If covid doesn't take you out, can I?",
     id: 1
   };
 
   let action;
 
   test('Should return default state if there is no action type passed into the reducer', () => {
-    expect(recListReducer({}, { type: null })).toEqual({});
+    expect(postsReducer({}, { type: null })).toEqual({});
   });
 
-  test('Should successfully add a new recommendation to recList', () => {
-    const { recommender, title, description, id } = recData;
+  test('Should successfully add a new post to postList', () => {
+    const { name, post, id } = recData;
     action = {
-      type: 'ADD_REC',
-      recommender: recommender,
-      title: title,
-      description: description,
+      type: 'ADD_POST',
+      name: name,
+      post: post,
       id: id
     };
 
-    expect(recListReducer({}, action)).toEqual({
+    expect(postsReducer({}, action)).toEqual({
       [id]: {
-        recommender: recommender,
-        title: title,
-        description: description,
+        name: name,
+        post: post,
         id: id
       }
     });
   });
 
-  test('Should successfully delete a recommendation', () => {
+  test('Should successfully delete a post', () => {
     action = {
-      type: 'DELETE_REC',
+      type: 'DELETE_POST',
       id: 1
     }
 
-    expect(recListReducer(currentState, action)).toEqual({
+    expect(postsReducer(currentState, action)).toEqual({
       2: {
-        recommender: 'Shannon',
-        title: 'Mamma Mia',
-        description: "This is a perfect movie.",
+        name: 'Shannon',
+        post: "U up?",
         id: 2
       }
     });
   });
-
 
 });
