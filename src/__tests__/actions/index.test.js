@@ -10,13 +10,14 @@ describe('dashboard actions', () => {
   });
 
   test('addPost should create ADD_POST action', () => {
-    expect(actions.addPost({ name: 'Shannon', post: 'Wat up', id: 1, timeOpen: 0, formattedWaitTime: 'a few seconds' })).toEqual({
+    expect(actions.addPost({ name: 'Shannon', post: 'Wat up', id: 1, timeOpen: 0, formattedWaitTime: 'a few seconds', score: 0 })).toEqual({
       type: c.ADD_POST,
       name: 'Shannon',
       post: 'Wat up',
       id: 1,
       timeOpen: 0,
-      formattedWaitTime: 'a few seconds'
+      formattedWaitTime: 'a few seconds',
+      score: 0
     })
   })
 })

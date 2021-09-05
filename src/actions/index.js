@@ -6,13 +6,14 @@ export const deletePost = id => ({
 })
 
 export const addPost = (newPost) => {
-  const { name, post, id, timeOpen, formattedWaitTime } = newPost;
+  const { name, post, id, timeOpen, formattedWaitTime, score } = newPost;
   return({
     type: c.ADD_POST,
     name,
     post,
     id,
     timeOpen,
-    formattedWaitTime
+    formattedWaitTime,
+    score
   })
 }
