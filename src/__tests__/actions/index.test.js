@@ -20,4 +20,12 @@ describe('dashboard actions', () => {
       score: 0
     })
   })
+
+  test('updateScore should create UPDATE_SCORE action', () => {
+    expect(actions.updateScore(1, 1)).toEqual({
+      type: c.UPDATE_SCORE,
+      id: 1,
+      vote: 1
+    })
+  })
 })

@@ -17,3 +17,9 @@ export const addPost = (newPost) => {
     score
   })
 }
+
+export const updateScore = (id, vote) => ({
+  type: c.UPDATE_SCORE,
+  id,
+  vote
+})
