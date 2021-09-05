@@ -20,7 +20,8 @@ describe('postsReducer', () => {
     name: 'Garrett',
     post: "If covid doesn't take you out, can I?",
     timeOpen: 0,
-    id: 1
+    id: 1,
+    score: 0
   };
 
   let action;
@@ -30,13 +31,14 @@ describe('postsReducer', () => {
   });
 
   test('Should successfully add a new post to postList that includes Moment-formatted wait times', () => {
-    const { name, post, timeOpen, formattedWaitTime, id } = postData;
+    const { name, post, timeOpen, score, id } = postData;
     action = {
       type: c.ADD_POST,
       name,
       post,
       timeOpen,
       id,
+      score,
       formattedWaitTime: new Moment().fromNow(true)
     };
 
@@ -45,6 +47,7 @@ describe('postsReducer', () => {
         name,
         post,
         id,
+        score,
         timeOpen,
         formattedWaitTime: 'a few seconds'
       }
@@ -67,7 +70,7 @@ describe('postsReducer', () => {
   });
 
   test('Should add a formatted wait time to ticket entry', () => {
-    const { name, post, timeOpen, id } = postData;
+    const { name, post, timeOpen, id, score } = postData;
     action = {
       type : c.UPDATE_TIME,
       formattedWaitTime: '4 minutes',
@@ -79,8 +82,28 @@ describe('postsReducer', () => {
         post,
         timeOpen,
         id,
+        score,
         formattedWaitTime : '4 minutes'
       }
     });
   });
+
+  test("Should update post's score by specified amount", () => {
+    const { name, post, id, timeOpen, score } = postData;
+    action = {
+      type: c.UPDATE_SCORE,
+      id: 1,
+      vote: -1
+    };
+
+    expect(postsReducer( { [id] : postData }, action )).toEqual({
+      [id]: {
+        name,
+        post,
+        id,
+        timeOpen,
+        score: -1
+      }
+    })
+  })
 });
