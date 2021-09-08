@@ -1,15 +1,109 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import * as a from './../actions/index'
+import NewPostForm from './NewPostForm';
+import EditPostForm from './EditPostForm';
+import PostList from './PostList';
+import PostDetail from './PostDetail';
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      selectedPost: null,
+      editing: false
+    };
   }
+
+  handleEditingPostInList = (postToEdit) => {
+    const { dispatch } = this.props;
+    const action = a.addPost(postToEdit);
+    dispatch(action);
+    this.setState({
+      editing: false,
+      selectedTicket: null
+    })
+  }
+
+  handleEditClick = () => {
+    this.setState({editing: true});
+  }
+
+  handleDeletingPost = (id) => {
+    const { dispatch } = this.props;
+    const action = a.deletePost(id);
+    dispatch(action);
+    this.setState({selectedTicket: null});
+  }
+
+  handleChangingSelectedPost = (id) => {
+    const selectedPost = this.props.postsList[id];
+    this.setState({ selectedPost });
+  }
+
+  handleAddingNewPostToList = (newPost) => {
+    const { dispatch } = this.props;
+    const action = a.addPost(newPost);
+    dispatch(action);
+    const action2 = a.toggleForm();
+    dispatch(action2);
+  }
+
+  handleClick = () => {
+    if (this.state.selectedPost != null) {
+      this.setState({
+        selectedTicket: null,
+        editing: false
+      });
+    } else {
+      const { dispatch } = this.props;
+      const action = a.toggleForm();
+      dispatch(action);
+    }
+  }
+
   render(){
+    let currentlyVisibleState = null;
+    let buttonText = "Return to Dashboard";
+
+    if (this.state.editing) {
+      currentlyVisibleState = 
+        <EditPostForm post = {this.state.selectedPost} onEditPost = {this.handleEditingPostInList}/>;
+      // buttonText = "Return to dashboard";
+    } else if (this.state.selectedPost != null) {
+      currentlyVisibleState = 
+        <PostDetail post = {this.state.selectedPost} onClickingDelete = {this.handleDeletingPost} onClickingEdit = {this.handleEditingPostInList} />;
+      // buttonText = "Return to dashboard";
+    } else if (this.props.formVisibleOnPage) {
+      currentlyVisibleState = <NewPostForm onNewPostCreation = {this.handleAddingNewPostToList} />;
+      // buttonText = "Return to dashboard";
+    } else {
+      currentlyVisibleState =
+        <PostList postList = {this.props.postsList} onPostSelection = {this.handleChangingSelectedPost} />;
+      buttonText = "Post New";
+    }
     return(
-      <h3>DASHBOARD</h3>
+      <React.Fragment>
+        {currentlyVisibleState}
+        <button onClick={this.handleClick}>{buttonText}</button>
+      </React.Fragment>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    postsLists: state.postsList,
+    formVisibleOnPage: state.formVisibleOnPage
+  }
+}
+
+Dashboard.propTypes = {
+  postsList: PropTypes.object,
+  formVisibleOnPage: PropTypes.object
+}
+
+Dashboard = connect(mapStateToProps)(Dashboard);
 
 export default Dashboard;
