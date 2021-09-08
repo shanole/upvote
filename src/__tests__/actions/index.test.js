@@ -27,5 +27,11 @@ describe('dashboard actions', () => {
       id: 1,
       vote: 1
     })
+  });
+
+  test('toggleForm should create a TOGGLE_FORM action', () => {
+    expect(actions.toggleForm()).toEqual({
+      type: c.TOGGLE_FORM
+    })
   })
 })

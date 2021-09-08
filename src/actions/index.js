@@ -23,3 +23,5 @@ export const updateScore = (id, vote) => ({
   id,
   vote
 })
+
+export const toggleForm = () => ({type: c.TOGGLE_FORM});
