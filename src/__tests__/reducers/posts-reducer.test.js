@@ -20,7 +20,8 @@ describe('postsReducer', () => {
     post: "If covid doesn't take you out, can I?",
     timePosted: 0,
     id: 1,
-    score: 0
+    score: 0,
+    edited: false
   };
 
   let action;
@@ -30,13 +31,14 @@ describe('postsReducer', () => {
   });
 
   test('Should successfully add a new post to postList', () => {
-    const { name, post, timePosted, score, id } = postData;
+    const { name, post, timePosted, score, id, edited } = postData;
     action = {
       type: c.ADD_POST,
       name,
       post,
       timePosted,
       id,
+      edited,
       score,
     };
 
@@ -44,9 +46,10 @@ describe('postsReducer', () => {
       [id]: {
         name,
         post,
-        id,
-        score,
         timePosted,
+        id,
+        edited,
+        score
       }
     });
   });
@@ -67,7 +70,7 @@ describe('postsReducer', () => {
   });
 
   test("Should update post's score by specified amount", () => {
-    const { name, post, id, timePosted, score } = postData;
+    const { name, post, id, timePosted, score, edited } = postData;
     action = {
       type: c.UPDATE_SCORE,
       id: 1,
@@ -80,7 +83,8 @@ describe('postsReducer', () => {
         post,
         id,
         timePosted,
-        score: -1
+        edited,
+        score: score-1
       }
     })
   })
