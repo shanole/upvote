@@ -1,6 +1,5 @@
 import postsReducer from '../../reducers/posts-reducer'
 import * as c from '../../actions/ActionTypes'
-import Moment from 'moment';
 
 describe('postsReducer', () => {
 
@@ -19,7 +18,7 @@ describe('postsReducer', () => {
   const postData = {
     name: 'Garrett',
     post: "If covid doesn't take you out, can I?",
-    timeOpen: 0,
+    timePosted: 0,
     id: 1,
     score: 0
   };
@@ -30,16 +29,15 @@ describe('postsReducer', () => {
     expect(postsReducer({}, { type: null })).toEqual({});
   });
 
-  test('Should successfully add a new post to postList that includes Moment-formatted wait times', () => {
-    const { name, post, timeOpen, score, id } = postData;
+  test('Should successfully add a new post to postList', () => {
+    const { name, post, timePosted, score, id } = postData;
     action = {
       type: c.ADD_POST,
       name,
       post,
-      timeOpen,
+      timePosted,
       id,
       score,
-      formattedWaitTime: new Moment().fromNow(true)
     };
 
     expect(postsReducer({}, action)).toEqual({
@@ -48,8 +46,7 @@ describe('postsReducer', () => {
         post,
         id,
         score,
-        timeOpen,
-        formattedWaitTime: 'a few seconds'
+        timePosted,
       }
     });
   });
@@ -69,27 +66,8 @@ describe('postsReducer', () => {
     });
   });
 
-  test('Should add a formatted wait time to ticket entry', () => {
-    const { name, post, timeOpen, id, score } = postData;
-    action = {
-      type : c.UPDATE_TIME,
-      formattedWaitTime: '4 minutes',
-      id: id
-    };
-    expect(postsReducer({ [id] : postData }, action)).toEqual({
-      [id] : {
-        name,
-        post,
-        timeOpen,
-        id,
-        score,
-        formattedWaitTime : '4 minutes'
-      }
-    });
-  });
-
   test("Should update post's score by specified amount", () => {
-    const { name, post, id, timeOpen, score } = postData;
+    const { name, post, id, timePosted, score } = postData;
     action = {
       type: c.UPDATE_SCORE,
       id: 1,
@@ -101,7 +79,7 @@ describe('postsReducer', () => {
         name,
         post,
         id,
-        timeOpen,
+        timePosted,
         score: -1
       }
     })
