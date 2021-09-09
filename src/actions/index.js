@@ -5,18 +5,6 @@ export const deletePost = id => ({
   id
 })
 
-export const addPost = (newPost) => {
-  const { name, post, id, timePosted, edited, score } = newPost;
-  return({
-    type: c.ADD_POST,
-    name,
-    post,
-    id,
-    timePosted,
-    score,
-    edited
-  })
-}
 
 export const updateScore = (id, vote) => ({
   type: c.UPDATE_SCORE,

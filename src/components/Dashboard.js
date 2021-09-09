@@ -16,15 +16,15 @@ class Dashboard extends React.Component {
     };
   }
 
-  handleEditingPostInList = (postToEdit) => {
-    const { dispatch } = this.props;
-    const action = a.addPost(postToEdit);
-    dispatch(action);
-    this.setState({
-      editing: false,
-      selectedPost: null
-    })
-  }
+  // handleEditingPostInList = (postToEdit) => {
+  //   const { dispatch } = this.props;
+  //   const action = a.addPost(postToEdit);
+  //   dispatch(action);
+  //   this.setState({
+  //     editing: false,
+  //     selectedPost: null
+  //   })
+  // }
 
   handleEditClick = () => {
     this.setState({editing: true});
@@ -42,10 +42,8 @@ class Dashboard extends React.Component {
     this.setState({ selectedPost });
   }
 
-  handleAddingNewPostToList = (newPost) => {
+  handleAddingNewPostToList = () => {
     const { dispatch } = this.props;
-    const action = a.addPost(newPost);
-    dispatch(action);
     const action2 = a.toggleForm();
     dispatch(action2);
   }

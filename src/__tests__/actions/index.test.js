@@ -9,17 +9,17 @@ describe('dashboard actions', () => {
     });
   });
 
-  test('addPost should create ADD_POST action', () => {
-    expect(actions.addPost({ name: 'Shannon', post: 'Wat up', id: 1, timePosted: "8:00", edited: false, score: 0 })).toEqual({
-      type: c.ADD_POST,
-      name: 'Shannon',
-      post: 'Wat up',
-      id: 1,
-      timePosted: "8:00",
-      edited: false,
-      score: 0
-    })
-  })
+  // test('addPost should create ADD_POST action', () => {
+  //   expect(actions.addPost({ name: 'Shannon', post: 'Wat up', id: 1, timePosted: "8:00", edited: false, score: 0 })).toEqual({
+  //     type: c.ADD_POST,
+  //     name: 'Shannon',
+  //     post: 'Wat up',
+  //     id: 1,
+  //     timePosted: "8:00",
+  //     edited: false,
+  //     score: 0
+  //   })
+  // })
 
   test('updateScore should create UPDATE_SCORE action', () => {
     expect(actions.updateScore(1, 1)).toEqual({

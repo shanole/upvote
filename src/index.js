@@ -10,7 +10,7 @@ import { ReactReduxFirebaseProvider } from 'react-redux-firebase'; // allows us 
 import { createFirestoreInstance } from 'redux-firestore';
 import firebase from "./firebase"; 
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer); // this store is connected to firestore through the rootreducer
 
 
 // store.subscribe(() => 
@@ -27,7 +27,7 @@ const rrfProps = {
 
 ReactDOM.render(
   <Provider store = {store}>
-    <ReactReduxFirebaseProvider {...rrfProps}> // privoides our redux store context
+    <ReactReduxFirebaseProvider {...rrfProps}> 
     <App />
     </ReactReduxFirebaseProvider>
   </Provider>,

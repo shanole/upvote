@@ -1,31 +1,38 @@
 import React from 'react';
-import { v4 } from 'uuid';
 import PropTypes from 'prop-types';
 import ReusableForm from './ReusableForm';
+import { useFirestore } from 'react-redux-firebase'
 
 function NewPostForm(props) {
-  function handleNewPostFormSubmission(event) {
+  const firestore = useFirestore();
+  function addPostToFireStore(event) {
+
     event.preventDefault();
-    props.onNewPostCreation({
-      name: event.target.name.value,
-      post: event.target.post.value,
-      id: v4(),
-      timePosted: new Date(Date.now()).toString(),
-      score: 0,
-      edited: false
-    })
+    props.onNewPostCreation();
+   
+    return firestore.collection('posts').add(
+      {
+        name: event.target.name.value,
+        post: event.target.post.value, 
+        score: 0,
+        edited: false,
+        timePosted: firestore.FieldValue.serverTimestamp()
+      }
+    );
   }
+  
+  
   return (
     <React.Fragment>
       <ReusableForm
-        formSubmissionHandler={handleNewPostFormSubmission}
+        formSubmissionHandler={addPostToFireStore}
         buttonText="Post" />
     </React.Fragment>
     );
 }
 
-NewPostForm.propTypes = {
-  onNewPostCreation: PropTypes.func
-}
+// NewPostForm.propTypes = {
+//   onNewPostCreation: PropTypes.func
+// }
 
 export default NewPostForm;
