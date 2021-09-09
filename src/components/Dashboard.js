@@ -76,14 +76,11 @@ class Dashboard extends React.Component {
     if (this.state.editing) {
       currentlyVisibleState = 
         <EditPostForm post = {this.state.selectedPost} onEditPost = {this.handleEditingPostInList}/>;
-      // buttonText = "Return to dashboard";
     } else if (this.state.selectedPost != null) {
       currentlyVisibleState = 
         <PostDetail post = {this.state.selectedPost} onClickingDelete = {this.handleDeletingPost} onClickingEdit = {this.handleEditClick} />;
-      // buttonText = "Return to dashboard";
     } else if (this.props.formVisibleOnPage) {
       currentlyVisibleState = <NewPostForm onNewPostCreation = {this.handleAddingNewPostToList} />;
-      // buttonText = "Return to dashboard";
     } else {
       currentlyVisibleState =
         <PostList postList = {this.props.masterPostsList} onPostSelection = {this.handleChangingSelectedPost} onVoteClick = {this.handleVoteClick}/>;

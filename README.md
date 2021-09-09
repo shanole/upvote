@@ -1,29 +1,24 @@
 # _Upvote_
 
-* _Date Created: August 30th 2021_
-* _Last Updated: August 31st 2021_
+- _Date Created: August 30th 2021_
+- _Last Updated: August 31st 2021_
 
-#### By _Garrett Brown, Shannon Lee_
+#### By _Jesse Callahan, Shannon Lee, Faisal Rana_
 
-***
+---
 
 ## Description
-
-
 
 <details>
     <summary><span style="color:red"><strong>Expand to Read User Stories</strong></summary>
 
 1. As a user, I want to enter content into a form and submit to create a new post.
-2. As a user, I want my new posts to include a timestamp. And I want to see when other listings were   posted, too.
+2. As a user, I want my new posts to include a timestamp. And I want to see when other listings were posted, too.
 3. As a user, I want to upvote posts I particularly enjoy.
 4. As a user, I want to downvote posts I don't like, or find inappropriate.
 5. As a user, I'd like posts with the most upvotes to appear higher on the page. (We haven't explicitly covered this in our curriculum, but here's a hint: You can complete logic before the return statement of a mapStateToProps() method!)
 
-
 </details>
-
-
 
 ## Setup/Installation Requirements
 
@@ -48,19 +43,19 @@
 
 </details>
 
-
 ## Known Bugs
 
 _There are currently no known bugs._
 
-
 ## Support and contact details
 
-_For assistance, please contact:_ 
-* Garrett Brown <garrettpaulbrown@gmail.com>
-* Shannon Lee <shannonleehj@gmail.com>
+_For assistance, please contact:_
+
+- Garrett Brown <garrettpaulbrown@gmail.com>
+- Shannon Lee <shannonleehj@gmail.com>
 
 ## Technologies Used
+
 1. VSCode, Github
 2. HTML, CSS, JS, MD, JSX
 3. React, Webpack
