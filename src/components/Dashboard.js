@@ -22,7 +22,7 @@ class Dashboard extends React.Component {
     dispatch(action);
     this.setState({
       editing: false,
-      selectedTicket: null
+      selectedPost: null
     })
   }
 
@@ -34,11 +34,11 @@ class Dashboard extends React.Component {
     const { dispatch } = this.props;
     const action = a.deletePost(id);
     dispatch(action);
-    this.setState({selectedTicket: null});
+    this.setState({selectedPost: null});
   }
 
   handleChangingSelectedPost = (id) => {
-    const selectedPost = this.props.postsList[id];
+    const selectedPost = this.props.masterPostsList[id];
     this.setState({ selectedPost });
   }
 
@@ -53,7 +53,7 @@ class Dashboard extends React.Component {
   handleClick = () => {
     if (this.state.selectedPost != null) {
       this.setState({
-        selectedTicket: null,
+        selectedPost: null,
         editing: false
       });
     } else {
@@ -73,14 +73,14 @@ class Dashboard extends React.Component {
       // buttonText = "Return to dashboard";
     } else if (this.state.selectedPost != null) {
       currentlyVisibleState = 
-        <PostDetail post = {this.state.selectedPost} onClickingDelete = {this.handleDeletingPost} onClickingEdit = {this.handleEditingPostInList} />;
+        <PostDetail post = {this.state.selectedPost} onClickingDelete = {this.handleDeletingPost} onClickingEdit = {this.handleEditClick} />;
       // buttonText = "Return to dashboard";
     } else if (this.props.formVisibleOnPage) {
       currentlyVisibleState = <NewPostForm onNewPostCreation = {this.handleAddingNewPostToList} />;
       // buttonText = "Return to dashboard";
     } else {
       currentlyVisibleState =
-        <PostList postList = {this.props.postsList} onPostSelection = {this.handleChangingSelectedPost} />;
+        <PostList postList = {this.props.masterPostsList} onPostSelection = {this.handleChangingSelectedPost} />;
       buttonText = "Post New";
     }
     return(
@@ -94,14 +94,14 @@ class Dashboard extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    postsLists: state.postsList,
+    masterPostsList: state.masterPostsList,
     formVisibleOnPage: state.formVisibleOnPage
   }
 }
 
 Dashboard.propTypes = {
-  postsList: PropTypes.object,
-  formVisibleOnPage: PropTypes.object
+  masterPostsList: PropTypes.object,
+  formVisibleOnPage: PropTypes.bool
 }
 
 Dashboard = connect(mapStateToProps)(Dashboard);
