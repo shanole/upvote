@@ -81,7 +81,7 @@ class Dashboard extends React.Component {
       currentlyVisibleState = <NewPostForm onNewPostCreation = {this.handleAddingNewPostToList} />;
     } else {
       currentlyVisibleState =
-        <PostList postList = {this.props.masterPostsList} onPostSelection = {this.handleChangingSelectedPost} onVoteClick = {this.handleVoteClick}/>;
+        <PostList onPostSelection = {this.handleChangingSelectedPost} onVoteClick = {this.handleVoteClick}/>;
       buttonText = "Post New";
     }
     return(
