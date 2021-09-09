@@ -13,7 +13,12 @@ function Post(props) {
         <h3 className="post-content">{props.post}</h3>
         <p className="post-author">{props.name}</p>
         <p className="timestamp">{props.timePosted}</p>
+        <p className="post-score">{props.score}</p>
         <p className="edited">{editedText}</p>
+      </div>
+      <div className="vote-buttons">
+        <button onClick = {() => props.whenVoteClicked(props.id, 1)}>Upvote</button>
+        <button onClick = {() => props.whenVoteClicked(props.id, -1)}>Downvote</button>
       </div>
     </React.Fragment>
     );
@@ -25,7 +30,8 @@ Post.propTypes = {
   id: PropTypes.string,
   timePosted: PropTypes.string,
   edited: PropTypes.bool,
-  whenPostClicked: PropTypes.func
+  whenPostClicked: PropTypes.func,
+  whenVoteClicked: PropTypes.func
 }
 
 export default Post;

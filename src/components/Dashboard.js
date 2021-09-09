@@ -63,6 +63,12 @@ class Dashboard extends React.Component {
     }
   }
 
+  handleVoteClick = (id, vote) => {
+    const { dispatch } = this.props;
+    const action = a.updateScore(id, vote);
+    dispatch(action);
+  }
+
   render(){
     let currentlyVisibleState = null;
     let buttonText = "Return to Dashboard";
@@ -80,7 +86,7 @@ class Dashboard extends React.Component {
       // buttonText = "Return to dashboard";
     } else {
       currentlyVisibleState =
-        <PostList postList = {this.props.masterPostsList} onPostSelection = {this.handleChangingSelectedPost} />;
+        <PostList postList = {this.props.masterPostsList} onPostSelection = {this.handleChangingSelectedPost} onVoteClick = {this.handleVoteClick}/>;
       buttonText = "Post New";
     }
     return(
