@@ -29,7 +29,7 @@ class Dashboard extends React.Component {
   }
 
   handleDeletingPost = (id) => {
-    this.props.firestore.delete({collection: 'post', doc: id});
+    this.props.firestore.delete({collection: 'posts', doc: id});
     this.setState({selectedPost: null});
   }
 

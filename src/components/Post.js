@@ -4,16 +4,40 @@ import { useFirestore } from 'react-redux-firebase';
 
 function Post(props) {
   const firestore = useFirestore();
+  const [disableUp, setDisableUp] = React.useState(false);
+  const [disableDown, setDisableDown] = React.useState(false);
+  const [userVoted, setUserVoted] = React.useState(false);
+  const [prevVote, setPrevVote] = React.useState( 0);
   let editedText = null;
   if (props.edited) {
     editedText = "Edited";
   }
 
   function whenVoteClicked(id, currScore, vote){
-    const firestorePostScore = {
-      score: currScore + vote
+    if (userVoted){
+        if (prevVote === 1){
+          const firestorePostScore = {
+            score: currScore - 1
+          }
+          firestore.update({collection: 'posts', doc: id}, firestorePostScore);
+        }
+        else {
+          const firestorePostScore = {
+            score: currScore + 1
+          }
+          firestore.update({collection: 'posts', doc: id}, firestorePostScore);
+        }
     }
-    firestore.update({collection: 'posts', doc: id}, firestorePostScore);
+    else {
+      const firestorePostScore = {
+        score: currScore + vote
+      }
+      firestore.update({collection: 'posts', doc: id}, firestorePostScore);
+      //toggles opposite button clicked to false
+      vote === 1 ? setDisableDown(true) : setDisableUp(true);
+      setUserVoted(true);
+      setPrevVote(vote);
+    }
   }
 
   return (
@@ -27,8 +51,8 @@ function Post(props) {
         <p className="edited">{editedText}</p>
       </div>
       <div className="vote-buttons">
-        <button onClick = {() => whenVoteClicked(props.id, props.score, 1)}>Upvote</button>
-        <button onClick = {() => whenVoteClicked(props.id, props.score, -1)}>Downvote</button>
+        <button disabled={disableUp} onClick = {() => whenVoteClicked(props.id, props.score, 1)}>Upvote</button>
+        <button disabled={disableDown} onClick = {() => whenVoteClicked(props.id, props.score, -1)}>Downvote</button>
       </div>
     </React.Fragment>
     );
@@ -44,3 +68,41 @@ Post.propTypes = {
 }
 
 export default Post;
+
+
+
+// -if you click a button, the other one should be disabled
+// -if you click the original button again, it removes the previous value
+
+//the post should know if you've clicked it before
+//if you click the same button again, it should REMOVE the previous vote
+
+//each time you click the button, it does the opposite
+
+// const [voted, setVoted] = React.useState(false);
+// const [voteUp, setVoteUp] = React.useState(null);
+
+
+// function whenVoteClicked(id, currScore, vote){
+//   if (voted){
+
+//   }
+
+//   else {
+//     const firestorePostScore = {
+//       score: currScore + vote
+//     }
+//     firestore.update({collection: 'posts', doc: id}, firestorePostScore);
+//     //toggles opposite button clicked to false
+//     vote === 1 ? setDisableDown(true) : setDisableUp(true);
+//     setUserVoted(true);
+//     setPrevVote(vote);
+//     if (vote === 1){
+//        setVoteUp(true);
+//     }
+//    if (vote === -1){
+//      setVoteUp(false);
+//      }
+//     setVoted(!voted);
+//   }
+// }
