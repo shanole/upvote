@@ -12,7 +12,7 @@ function EditPostForm(props) {
     props.onEditPost();
     const propertiesToUpdate = {
       name: event.target.name.value,
-      post: event.target.name.value,
+      post: event.target.post.value,
       edited: true
     } 
     return firestore.update({collection: 'posts', doc: post.id}, propertiesToUpdate)
