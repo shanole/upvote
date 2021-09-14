@@ -68,13 +68,6 @@ class Dashboard extends React.Component {
     }
   }
 
-  handleVoteClick = (id, currScore, vote) => {
-    const firestorePostScore = {
-      score: currScore + vote
-    }
-    this.props.firestore.update({collection: 'posts', doc: id}, firestorePostScore);
-  }
-
   render(){
     let currentlyVisibleState = null;
     let buttonText = "Return to Dashboard";
@@ -89,7 +82,7 @@ class Dashboard extends React.Component {
       currentlyVisibleState = <NewPostForm onNewPostCreation = {this.handleAddingNewPostToList} />;
     } else {
       currentlyVisibleState =
-        <PostList onPostSelection = {this.handleChangingSelectedPost} onVoteClick = {this.handleVoteClick}/>;
+        <PostList onPostSelection = {this.handleChangingSelectedPost} />;
       buttonText = "Post New";
     }
     return(

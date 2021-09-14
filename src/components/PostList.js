@@ -15,7 +15,6 @@ function PostList(props) {
         {posts.map( (post) => {
           return <Post 
             whenPostClicked = {props.onPostSelection}
-            whenVoteClicked = {props.onVoteClick}
             name = {post.name}
             post = {post.post}
             // timestamp is not working
@@ -43,7 +42,6 @@ function PostList(props) {
 
 PostList.propTypes = {
   onPostSelection: PropTypes.func,
-  onVoteClick: PropTypes.func
 }
 
 export default PostList;

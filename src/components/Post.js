@@ -1,11 +1,21 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import { useFirestore } from 'react-redux-firebase';
 
 function Post(props) {
+  const firestore = useFirestore();
   let editedText = null;
   if (props.edited) {
     editedText = "Edited";
   }
+
+  function whenVoteClicked(id, currScore, vote){
+    const firestorePostScore = {
+      score: currScore + vote
+    }
+    firestore.update({collection: 'posts', doc: id}, firestorePostScore);
+  }
+
   return (
     <React.Fragment>
       <hr />
@@ -17,8 +27,8 @@ function Post(props) {
         <p className="edited">{editedText}</p>
       </div>
       <div className="vote-buttons">
-        <button onClick = {() => props.whenVoteClicked(props.id, props.score, 1)}>Upvote</button>
-        <button onClick = {() => props.whenVoteClicked(props.id, props.score, -1)}>Downvote</button>
+        <button onClick = {() => whenVoteClicked(props.id, props.score, 1)}>Upvote</button>
+        <button onClick = {() => whenVoteClicked(props.id, props.score, -1)}>Downvote</button>
       </div>
     </React.Fragment>
     );
@@ -30,8 +40,7 @@ Post.propTypes = {
   id: PropTypes.string,
   timePosted: PropTypes.string,
   edited: PropTypes.bool,
-  whenPostClicked: PropTypes.func,
-  whenVoteClicked: PropTypes.func
+  whenPostClicked: PropTypes.func
 }
 
 export default Post;
