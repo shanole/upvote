@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 
 function PostList(props) {
-  useFirestoreConnect([ {collection: 'posts'} ]);
+  useFirestoreConnect({collection: 'posts', orderBy: ['score', 'desc'] } );
 
   const posts = useSelector(state => state.firestore.ordered.posts);
   
