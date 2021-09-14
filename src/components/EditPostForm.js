@@ -1,20 +1,21 @@
 import React from 'react';
 import ReusableForm from './ReusableForm';
 import PropTypes from 'prop-types';
+import { useFirestore } from 'react-redux-firebase';
 
 function EditPostForm(props) {
   const { post } = props;
+  const firestore = useFirestore();
 
   function handleEditPostFormSubmission(event) {
     event.preventDefault();
-    props.onEditPost({
+    props.onEditPost();
+    const propertiesToUpdate = {
       name: event.target.name.value,
       post: event.target.name.value,
-      id: post.id,
-      timePosted: post.timePosted,
-      score: post.score,
       edited: true
-    })
+    } 
+    return firestore.update({collection: 'posts', doc: post.id}, propertiesToUpdate)
   }
 
   return (

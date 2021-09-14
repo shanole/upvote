@@ -17,8 +17,8 @@ function Post(props) {
         <p className="edited">{editedText}</p>
       </div>
       <div className="vote-buttons">
-        <button onClick = {() => props.whenVoteClicked(props.id, 1)}>Upvote</button>
-        <button onClick = {() => props.whenVoteClicked(props.id, -1)}>Downvote</button>
+        <button onClick = {() => props.whenVoteClicked(props.id, props.score, 1)}>Upvote</button>
+        <button onClick = {() => props.whenVoteClicked(props.id, props.score, -1)}>Downvote</button>
       </div>
     </React.Fragment>
     );

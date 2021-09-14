@@ -17,15 +17,12 @@ class Dashboard extends React.Component {
     };
   }
 
-  // handleEditingPostInList = (postToEdit) => {
-  //   const { dispatch } = this.props;
-  //   const action = a.addPost(postToEdit);
-  //   dispatch(action);
-  //   this.setState({
-  //     editing: false,
-  //     selectedPost: null
-  //   })
-  // }
+  handleEditingPostInList = () => {
+    this.setState({
+      editing: false,
+      selectedPost: null
+    });
+  }
 
   handleEditClick = () => {
     this.setState({editing: true});
@@ -71,10 +68,11 @@ class Dashboard extends React.Component {
     }
   }
 
-  handleVoteClick = (id, vote) => {
-    const { dispatch } = this.props;
-    const action = a.updateScore(id, vote);
-    dispatch(action);
+  handleVoteClick = (id, currScore, vote) => {
+    const firestorePostScore = {
+      score: currScore + vote
+    }
+    this.props.firestore.update({collection: 'posts', doc: id}, firestorePostScore);
   }
 
   render(){
