@@ -6,6 +6,7 @@ import NewPostForm from './NewPostForm';
 import EditPostForm from './EditPostForm';
 import PostList from './PostList';
 import PostDetail from './PostDetail';
+import { withFirestore } from 'react-redux-firebase'
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -38,8 +39,17 @@ class Dashboard extends React.Component {
   }
 
   handleChangingSelectedPost = (id) => {
-    const selectedPost = this.props.masterPostsList[id];
-    this.setState({ selectedPost });
+    this.props.firestore.get({collection: 'posts', doc: id}).then((post) => {
+      const firestorePost = {
+        post: post.get("post"),
+        name: post.get("name"),
+        timePosted: (post.get("timePosted").toDate().toString()),
+        score: post.get("score"),
+        edited: post.get("edited"),
+        id: post.id
+      }
+      this.setState({selectedPost: firestorePost});
+    });
   }
 
   handleAddingNewPostToList = () => {
@@ -107,4 +117,4 @@ Dashboard.propTypes = {
 
 Dashboard = connect(mapStateToProps)(Dashboard);
 
-export default Dashboard;
+export default withFirestore(Dashboard);

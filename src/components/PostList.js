@@ -18,7 +18,8 @@ function PostList(props) {
             whenVoteClicked = {props.onVoteClick}
             name = {post.name}
             post = {post.post}
-            timePosted = {post.timePosted.toDate().toString()}
+            // timestamp is not working
+            // timePosted = {post.timePosted.toDate().toString()}
             edited = {post.edited}
             score = {post.score}
             id = {post.id}
