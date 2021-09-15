@@ -33,8 +33,8 @@ function VoteButtons(props) {
       firestore.update({collection: 'posts', doc: id}, firestorePostScore);
       //toggles opposite button clicked to false
       vote === 1 ? setDisableDown(true) : setDisableUp(true);
-      vote === 1 ? setUpVoteTrueColor('green') : setUpVoteTrueColor('grey');
-      vote === -1 ? setDownVoteTrueColor('#2596be') : setDownVoteTrueColor('grey');
+      vote === 1 ? setUpVoteTrueColor('#A3DD70') : setUpVoteTrueColor('grey');
+      vote === -1 ? setDownVoteTrueColor('#dd7370') : setDownVoteTrueColor('grey');
       setVoted(true);
       setPrevVote(vote);
     }
@@ -43,6 +43,7 @@ function VoteButtons(props) {
   return (
   <div className="vote-buttons">
     <button disabled={disableUp} style={{background:upVoteColor}} onClick = {() => whenVoteClicked(props.id, props.score, 1)}>Upvote</button>
+    <span className="score">{props.score}</span>
     <button disabled={disableDown} style={{background:downVoteColor}} onClick = {() => whenVoteClicked(props.id, props.score, -1)}>Downvote</button>
   </div>
   );
