@@ -4,6 +4,7 @@ import { useFirestore } from 'react-redux-firebase';
 
 function Post(props) {
   const firestore = useFirestore();
+  
   const [disableUp, setDisableUp] = React.useState(false);
   const [disableDown, setDisableDown] = React.useState(false);
   const [voted, setVoted] = React.useState(false);
