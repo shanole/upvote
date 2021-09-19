@@ -85,8 +85,8 @@ class Dashboard extends React.Component {
     }
     return(
       <React.Fragment>
-        {currentlyVisibleState}
         <button onClick={this.handleClick}>{buttonText}</button>
+        {currentlyVisibleState}
       </React.Fragment>
     )
   }

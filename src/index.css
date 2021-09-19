@@ -9,3 +9,14 @@ body {
   background-color: #262626;
   color: white;
 }
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 5px 8px;
+  margin: 10px 0px;
+}
+
+button:hover {
+  background-color: #b6dffc;
+}

@@ -11,6 +11,7 @@ const thumbsDown = <FontAwesomeIcon icon={faThumbsDown} />
 const Voting = styled.div`
 width: 250px;
 display: flex;
+align-items: center;
 justify-content: space-evenly;
 button {
   color: white;
