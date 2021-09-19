@@ -7,13 +7,18 @@
 
 ---
 
-![screenshot](https://i.imgur.com/01pmcFm.png)
-
 ## Description
 
 A web application built in React with a Reddit-style vote buttons for users to submit and vote on dating app opening lines. Utilizes Redux to integrate Firebase and Firestore database.
 
 TO DO: Authentication/authorization with Firebase
+
+<details>
+    <summary><strong>Screenshot</strong></summary>
+
+![screenshot](https://i.imgur.com/01pmcFm.png)
+
+</details>
 
 <details>
     <summary><span style="color:red"><strong>Expand to Read User Stories</strong></summary>
