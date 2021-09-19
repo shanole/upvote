@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: 20px;
@@ -11,6 +15,8 @@ body {
 }
 
 button {
+  background-color: #b6dffc;
+  color: #262626;
   border: none;
   border-radius: 10px;
   padding: 5px 8px;
@@ -19,5 +25,5 @@ button {
 }
 
 button:hover {
-  background-color: #b6dffc;
+  background-color: white;
 }

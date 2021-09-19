@@ -27,7 +27,7 @@ function PostList(props) {
         })}
       </React.Fragment>
     );
-  } else if (isEmpty(posts)) {
+  } else if (isEmpty(posts) && isLoaded(posts)) {
     return(
       <h3>No one has hit on me yet :(</h3>
     )
