@@ -1,13 +1,17 @@
-# _Upvote_
+# _Swipe Upvote_
 
 - _Date Created: August 30th 2021_
-- _Last Updated: August 31st 2021_
+- _Last Updated: September 19th 2021_
 
-#### By _Jesse Callahan, Shannon Lee, Faisal Rana_
+#### By _Jesse Callahan, Karlson Drendel, Shannon Lee, Faisal Rana_
 
 ---
 
 ## Description
+
+A web application built in React with a Reddit-style vote buttons for users to submit and vote on dating app opening lines. Utilizes Redux to integrate Firebase and Firestore database.
+
+TO DO: Authentication/authorization with Firebase
 
 <details>
     <summary><span style="color:red"><strong>Expand to Read User Stories</strong></summary>
@@ -16,7 +20,7 @@
 2. As a user, I want my new posts to include a timestamp. And I want to see when other listings were posted, too.
 3. As a user, I want to upvote posts I particularly enjoy.
 4. As a user, I want to downvote posts I don't like, or find inappropriate.
-5. As a user, I'd like posts with the most upvotes to appear higher on the page. (We haven't explicitly covered this in our curriculum, but here's a hint: You can complete logic before the return statement of a mapStateToProps() method!)
+5. As a user, I'd like posts with the most upvotes to appear higher on the page.
 
 </details>
 
