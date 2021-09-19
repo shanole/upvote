@@ -4,10 +4,11 @@ import PropTypes from "prop-types";
 import styled from 'styled-components';
 
 const PostMessage = styled.div`
-.post h2 {
-  max-width: 255px;
+
+p {
+  max-width: 400px;
   word-wrap: break-word;
-  margin-bottom: 12px;
+  margin-bottom: 0px;
   line-height: 24px;
   position: relative;
 	padding: 10px 20px;
@@ -21,36 +22,37 @@ const PostMessage = styled.div`
   }
 }
 
-.post {
-  max-width: 400px;
-  word-wrap: break-word;
-  line-height: 24px;
-  margin-bottom: 10px;
-  position: relative;
-	padding: 10px 20px;
-  border-radius: 25px;
-  color: white; 
+.post{
+  color: white;
   background: #0B93F6;
   align-self: flex-end;
 
   &:before {
     right: -7px;
     width: 20px;
-    background-color: #26262;
+    background-color: #0B93F6;
     border-bottom-left-radius: 16px 14px;
+
   }
   
   &:after {
     right: -26px;
     width: 26px;
-    background-color: #26262;
+    background-color: #262626;
     border-bottom-left-radius: 10px;
+
   }
 
   &:hover {
     background-color: #6dbefa;
     cursor: pointer
   }
+
+  &:hover:before {
+    background-color: #6dbefa;
+    cursor: pointer
+  }
+
 }
 .edited {
   font-size: 14px;
@@ -60,8 +62,10 @@ const PostMessage = styled.div`
 .post-author {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 0px;
-  margin-right: 40px;
+  padding: 0px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-right: 0px;
 }
 
 `;
@@ -78,10 +82,8 @@ function Post(props) {
       <PostMessage>
         <div onClick= { () => props.whenPostClicked(props.id)}>
           <p className="post-author">{props.name}</p>
-          <div className="post">
-            <h3>{props.post}</h3>
-            <p className="edited">{editedText}</p>
-          </div>
+          <p className="post">{props.post} </p>
+          <p className="edited">{editedText}</p>
         </div>
       </ PostMessage>
         <VoteButtons id={props.id} score={props.score}  />
