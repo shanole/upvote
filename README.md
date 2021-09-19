@@ -7,6 +7,8 @@
 
 ---
 
+![screenshot](https://i.imgur.com/01pmcFm.png)
+
 ## Description
 
 A web application built in React with a Reddit-style vote buttons for users to submit and vote on dating app opening lines. Utilizes Redux to integrate Firebase and Firestore database.
@@ -27,23 +29,19 @@ TO DO: Authentication/authorization with Firebase
 ## Setup/Installation Requirements
 
 <details>
-    <summary>Required Programs</summary>
+    <summary>Setup requirements</summary>
     
-1. An internet browser.
-2. Visual Code Studio (or another code editor).
-3. Node.js
+- Make sure [Node.js](https://nodejs.org/en/) and [Node Package Manager (npm)](https://www.npmjs.com/) are set up on your local machine. If not, follow the installation guide [here](https://www.learnhowtoprogram.com/intermediate-javascript/getting-started-with-javascript/installing-node-js).
 
 </details>
 
 <details>
     <summary>Installation of Program and Startup</summary>
 
-1. Open the terminal on your local machine and navigate to "Desktop."
-2. Clone Tap Room with the following git command `git clone git`
-3. Navigate to the top level of the repository with the command `cd `
-4. In the CL, type in `npm install`.
-5. In the CL, type in `npm run build`.
-6. In the CL, type in `npm start`.
+- Clone this repository to your machine `$ git clone https://github.com/shanole/upvote`
+- In the terminal, navigate to the top level of this directory `upvote/`
+- Recreate project environment and install required dependencies `$ npm install`
+- Open project in a development server on your web browser `$ npm start` to open it on http://localhost:3000
 
 </details>
 
@@ -55,14 +53,17 @@ _There are currently no known bugs._
 
 _For assistance, please contact:_
 
-- Garrett Brown <garrettpaulbrown@gmail.com>
 - Shannon Lee <shannonleehj@gmail.com>
 
 ## Technologies Used
 
-1. VSCode, Github
-2. HTML, CSS, JS, MD, JSX
-3. React, Webpack
+- React.js
+- JavaScript
+- Redux
+- Firebase & Firestore
+- npm
+- JSX
+- CSS
 
 ## Licensing
 
