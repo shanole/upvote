@@ -63,9 +63,16 @@ p {
   display: flex;
   justify-content: flex-end;
   padding: 0px;
-  margin-top: 10px;
+  font-size: 18px;
+  margin-top: 50px;
   margin-bottom: 5px;
   margin-right: 0px;
+}
+
+.post-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0px;
 }
 
 `;
@@ -83,10 +90,12 @@ function Post(props) {
         <div onClick= { () => props.whenPostClicked(props.id)}>
           <p className="post-author">{props.name}</p>
           <p className="post">{props.post} </p>
+        </div>
+        <div className="post-info">
           <p className="edited">{editedText}</p>
+          <VoteButtons id={props.id} score={props.score}  />
         </div>
       </ PostMessage>
-        <VoteButtons id={props.id} score={props.score}  />
     </React.Fragment>
     );
 }

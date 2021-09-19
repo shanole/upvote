@@ -1,6 +1,25 @@
 import React from 'react';
 import { useFirestore } from 'react-redux-firebase';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 
+
+const thumbsUp = <FontAwesomeIcon icon={faThumbsUp} />
+const thumbsDown = <FontAwesomeIcon icon={faThumbsDown} />
+
+const Voting = styled.div`
+width: 250px;
+display: flex;
+justify-content: space-evenly;
+button {
+  color: white;
+  padding: 2px 8px;
+  border-radius: 25%;
+  text-decoration: none;
+  border:none;
+}
+`
 
 function VoteButtons(props) {
   const firestore = useFirestore();
@@ -41,11 +60,11 @@ function VoteButtons(props) {
   }
   
   return (
-  <div className="vote-buttons">
-    <button disabled={disableUp} style={{background:upVoteColor}} onClick = {() => whenVoteClicked(props.id, props.score, 1)}>Upvote</button>
+  <Voting>
+    <button disabled={disableUp} style={{background:upVoteColor}} onClick = {() => whenVoteClicked(props.id, props.score, 1)}>{thumbsUp}</button>
     <span className="score">{props.score}</span>
-    <button disabled={disableDown} style={{background:downVoteColor}} onClick = {() => whenVoteClicked(props.id, props.score, -1)}>Downvote</button>
-  </div>
+    <button disabled={disableDown} style={{background:downVoteColor}} onClick = {() => whenVoteClicked(props.id, props.score, -1)}>{thumbsDown}</button>
+  </Voting>
   );
 }
 
